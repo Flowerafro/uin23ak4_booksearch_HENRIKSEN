@@ -1,64 +1,66 @@
 // SEARCH er komponentet med søkefunksjonen 
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom"
 
-export default function Search({books, setBookSearch, setCurrentId, currentId}) {
-
-    //lokal state som holder på input-verdi
+export default function Search({books, setBookSearch, defaultSearch}) {
+  
+    // state til verdien i inputfeltet
     const [inputValue, setInputValue] = useState('')
+    // state til søkeresultatet, som sier at default skal vise hele listen
+    const [searchResult, setSearchResult] = useState([(books)])
 
-    //en state som tømmer siden før et søk
-    //const [submit, setSubmit] = useState(false)
-
-    const [result, setResult] = useState((books))
-
-    //Effect som tømmer siden når søket fjernes
+    // sjekker om søkefeltet er tomt og om inputfelt har mindre enn 3 tegn, som gjør at resultatet dukker opp etter man har skreet inn 3 tegn
+    //deretter setter den state til at hele søkelisten skal vises
     useEffect(()=> {
-        if (inputValue === '')
-        {setResult(books)
-        }}, [inputValue, books]) 
-        
-    //setSubmit(false): inputValue}, [inputValue])
+        if (inputValue === '' || inputValue.length < 3) {
+            setSearchResult(books)
+        }
+    }, [inputValue, books]) 
 
-    //funksjon som kalles når søkefeltet brukes
-    const handleSeachInput = (e) => {
+    // håndterer input i søkefeltet og setter state til det som skrives inn
+    // toLowerCase unngår at søket blir case-sensitiv
+    const handleSearchInput = (e) => {
         setInputValue(e.target.value)
+        if(e.target.value.length >= 3) {
+            setSearchResult(books.filter(book => book.title.toLowerCase().includes(e.target.value.toLowerCase())))
+        }
     }
 
-    // funksjon som kalles når <form> sendes inn med klikk
+    // sjekker om søkefeltet er tomt (da skal det dukke opp en alert)
     const handleSubmit = (e) => {
         e.preventDefault();
         if(inputValue === '') {
-            alert("Please enter a seach word to find a book") // hvis søkefeltet er tomt, gis det beskjed om det til bruker
-        } else {
-            setBookSearch(`James+Bond+${inputValue.replace(/\s/g, "+")}`) // oppdaterer boksøket når form er sendt inn
-            setResult(books.filter(book => book.title.toLowerCase().includes(inputValue.toLowerCase())))
-            //setSubmit(true) // setter submit til true - når det er søkt skal denne aktiveres
+            alert("Please enter a search word to find a book")
+        } 
+        else {
+            setBookSearch(`${defaultSearch}+${inputValue.replace(/\s/g, "+")}`)
         }
-        
     }
 
-    //handleClick
-    const handleClick = (id) => {
-        setCurrentId(id)
-        //localStorage.getItem("key", id)
-    }
-
-    // filtrerer ut søkeord fra API-listen
-    //const sortBooks = books?.filter(book => book.title.toLowerCase().includes(inputValue.toLowerCase()))
-
+    // amazon_id: ut ifra API så ser det ut som at ikke alle bøker har en amazon_id, så jeg har lagt til en if-setning som sjekker om boken har en amazon_id, og hvis den har det så vil det dukke opp en knapp som leder til Amazon.com-søk
     return(
         <div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="search">Search book here:</label>
-                <input type="text" id="search" placeholder='skriv her..' autoComplete='off' onChange={handleSeachInput} className='search'/>
+                <input type="text" id="search" placeholder='skriv her..' autoComplete='off' onChange={handleSearchInput} className='search'/>
                 <button type='submit' className='btn'>search</button>
             </form>
-                <ul>
-                {result.map(item => <li key={item.key}><Link to={item.title} onClick={()=>handleClick(item.key)}>{item.title}</Link></li>)}
-            </ul>
-        
+                
+                {searchResult.map((item, index) => 
+                <article key={`${item.key}-${index}`}>
+                    <h3>{item.title}</h3>
+                    <ul>
+                    <li>{item.first_publish_year}</li>
+                        <li>{item.author_name}</li>
+                        <li>{item.average_rating || 'No rating available'}</li>
+                        {item.id_amazon ? <a href={`https://www.amazon.com/s?k=${item.id_amazon}`} target='_blank'></a> : null} 
+                    </ul>
+                </article>
+                
+                )}
         </div>
         )
     
 }
+
+
+

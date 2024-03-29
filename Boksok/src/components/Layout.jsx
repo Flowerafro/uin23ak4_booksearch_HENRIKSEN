@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 
 export default function Layout({children}) {
     return (
@@ -8,12 +6,13 @@ export default function Layout({children}) {
         <header>
             <nav>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="search">Search</Link></li>
+                    <li><Link to="/"> All James Bond Books</Link></li>
+                    <li><Link to="search">Search after book here</Link></li>
                 </ul>
             </nav>
         </header>
         <main>
+            <h2>James Bond book list</h2>
             {children}
         </main>
         <footer>Book search LineH</footer>

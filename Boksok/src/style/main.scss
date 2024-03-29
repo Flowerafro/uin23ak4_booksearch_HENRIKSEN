@@ -1,9 +1,93 @@
-$background: #395875;
-$heading-color: #fff;
-$form-background: #eb42e2; 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-:root{
-    background-color: $background;
-    color: $heading-color;
+// variabler til farger
+$header-bg: #787BB2;
+
+$main-bg: #FFF9EE;
+$main-bg2: #FFFFFF;
+
+$footer-bg: #555FB2;
+
+$button: #F57F61;
+$button2: #FF9B82;
+
+$font-cl: #fff;
+$font-cm: #8c8c8c;
+$font-cd: #000000;
+
+// variabler til font
+$font: 'Montserrat', sans-serif;
+$font-size: 16px;
+$font-ws: 200;
+$font-wm: 400;
+$font-wl: 700;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $main-bg;
+    font-family: $font;
+
+    header {
+        background-color: $header-bg;
+        padding: 2rem;
+
+        nav {
+        
+            ul {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                li {
+                    list-style: none;
+                    a {
+                        color: $font-cl
+                    }
+                }
+            }
+        }
+    }
+
+    main {
+        background-color: $main-bg;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+            h2 {
+                font-size: 2rem;
+                font-weight: $font-wl;
+                margin-bottom: 1rem;
+            }
+
+            article {
+                background-color: $main-bg2;
+                padding: 1rem;
+
+                h3{}
+                ul {
+                    
+                    li{
+                        list-style: none;
+                    }
+                }
+            }
+        }
+
+    }
+
+    footer {
+        background-color: $footer-bg;
+    }
+}
