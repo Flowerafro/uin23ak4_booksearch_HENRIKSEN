@@ -6,16 +6,13 @@ export default function Layout({children}) {
         <header>
             <nav>
                 <ul>
-                    <li><Link to="/"> All James Bond Books</Link></li>
-                    <li><Link to="search">Search after book here</Link></li>
+                    <li><Link to="/"> James Bond book list</Link></li>
                 </ul>
             </nav>
         </header>
         <main>
-            <h2>James Bond book list</h2>
             {children}
         </main>
-        <footer>Book search LineH</footer>
         </>
     )
 }

@@ -1,7 +1,8 @@
-// HOME er komponentet /"landingssiden" som viser opplisting av bøker om James Bond hentet fra API
+/* // HOME er komponentet /"landingssiden" som viser opplisting av bøker om James Bond hentet fra API
 
 import React, { useEffect } from 'react'
 import Search from './Search'
+import Booksearch from './Booksearch'
 
 export default function Home({setBookSearch, books, defaultSearch}) {
 
@@ -12,7 +13,8 @@ export default function Home({setBookSearch, books, defaultSearch}) {
 
     return (
         <>
-        <section>
+        <Booksearch />
+      {<section>
             {books?.map(item =>
                 <article key={item.key}>
                     <h3>{item.title}</h3>
@@ -22,9 +24,9 @@ export default function Home({setBookSearch, books, defaultSearch}) {
                         <li>{item.ratings_average}</li>
                     </ul>
                 </article>)}
-        </section>
+        </section>}
         </>
     )
 }
 
-
+ */
