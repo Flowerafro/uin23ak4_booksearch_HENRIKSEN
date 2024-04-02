@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 
-//import Search from './components/Search';
 import BookSearch from './components/Booksearch';
 import Layout from './components/Layout';
 
@@ -12,8 +11,8 @@ function App() {
   // variabel til API og henting av data
   const [books, setBooks] = useState([])
 
-  // variabel som holder på søkeordene hentet fra inputfeltet, de "endelige" søkeordet som sendes etter et "klikk"
-  const [query, setQuery] = useState("")
+  // variabel som holder på søkeordene hentet fra inputfeltet og med startverdi som James Bond
+  const [query, setQuery] = useState("James+Bond")
 
   // state som gir bruker en ventemelding mens API henter data
   const [loading, setLoading] = useState(false)
@@ -23,7 +22,7 @@ function App() {
   const getBooks = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://openlibrary.org/search.json?title="James Bond"+${query}`);
+      const response = await fetch(`https://openlibrary.org/search.json?title=${query}`); 
         if (!response.ok) {
             throw new Error("Error fetching data from OpenLibrary API");
         } else {
@@ -59,64 +58,3 @@ function App() {
 }
 
 export default App
-
-
-
-/* import { Routes, Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'
-
-//import Search from './components/Search';
-import BookSearch from './components/Booksearch.jsx';
-import Layout from './components/Layout';
-
-import '../src/style/main.scss'
-
-function App() {
-
-  // default søkeord slik at det hentes inn bøker kun fra James Bond API
-  const DEFAULT_SEARCH = 'James+Bond'
-
-  // variabel til API og henting av data
-  const [books, setBooks] = useState([])
-
-  // variabel som holder på søkeordene og setter state til at James Bond-bøker skal listes opp på siden
-  const [bookSearch, setBookSearch] = useState(DEFAULT_SEARCH)
-
-  // state som gir bruker en ventemelding mens API henter data
-  const [loading, setLoading] = useState(false)
-
-    const getBooks = async () => {
-        setLoading(true)
-        try{
-            const response = await fetch(`https://openlibrary.org/search.json?title=${bookSearch}`)
-            const data = await response.json()
-            console.log(data)
-            setBooks(data.docs); // først hadde jeg data.results men det gir undefined. I konsoll-loggen ser jeg at det ikke er en results, men docs. Når jeg endret dette til docs fikk jeg tak i 
-        } catch (error) {
-            console.log(error)
-        }
-        setLoading(false)
-    }
-
-    // kjører getBooks (henter data fra API) og [bookSearch] 
-    useEffect(()=>{
-        getBooks()
-    }, [bookSearch])
-
-    //console.log(books[0].isbn[0]);
-
-  return (
-    <>
-    <Layout>
-      {loading ? <p> Getting data from OpenLibary. Please wait...</p> : (
-        <Routes>
-        <Route path='/' element={<BookSearch books={books} bookSearch={bookSearch} setBookSearch={setBookSearch} defaultSearch={DEFAULT_SEARCH}/>} />
-      </Routes>)}
-    </Layout>
-    </>
-  )
-}
-
-export default App */
-
-/* <Route path='/' element={<Home books={books} setBookSearch={setBookSearch} defaultSearch={DEFAULT_SEARCH} />} />*/

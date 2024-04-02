@@ -6,7 +6,7 @@ export default function Layout({children}) {
         <header>
             <nav>
                 <ul>
-                    <li><Link to="/"> James Bond book list</Link></li>
+                    <li><Link to="/"> Welcome to you the OpenLibary API search list</Link></li>
                 </ul>
             </nav>
         </header>
