@@ -2,13 +2,12 @@
 
 // variabler til farger
 $header-bg: #787BB2;
+$header2-bg: #555FB2;
 
 $main-bg: #FFF9EE;
 $main-bg2: #FFFFFF;
 
-$footer-bg: #555FB2;
-
-$button: #F57F61;
+$button: #F2613D;
 $button2: #FF9B82;
 
 $font-cl: #fff;
@@ -35,40 +34,17 @@ body {
     font-family: $font;
     min-height: 100vh;
 
-    header {
-        background-color: $header-bg;
-        width: 100%;
-        height: 5rem;
-        padding: 2rem;
-
-        nav {
-        
-            ul {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                li {
-                    list-style: none;
-                    a {
-                        color: $font-cl;
-                        text-decoration: none;
-                    }
-                }
-            }
-        }
-    }
-
     main {
         background-color: $main-bg;
         padding: 2rem;
+
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
         h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 font-weight: $font-wl;
                 margin-bottom: 1rem;
                 text-align: center;
@@ -76,15 +52,22 @@ body {
 
         .search {
             margin-bottom: 2rem;
+
             form{
-                padding: 2rem;
+                background-color: $main-bg2;
+                margin: 1rem;
+                padding: 2rem 3rem;
+                border-radius: 2rem;
+                box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+                
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
 
                 label {
-                    font-size: 1.2rem;
+                    font-size: 2rem;
+                    font-weight: 800;
                     margin-bottom: 1rem;
                 }
                 input{
@@ -97,11 +80,12 @@ body {
                 }
                 button{
                     border: none;
-                    border-radius: 5rem;
+                    border-radius: 0.5rem;
                     background-color: $button;
                     color: $font-cl;
-                    width: 50%;
-                    height: 2rem;
+                    width: 35%;
+                    height: auto;
+                    padding: 0.7rem;
                     margin-top: 1rem;
 
                     &:hover {
@@ -116,6 +100,9 @@ body {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 2rem;
+
+            border-top: 2px solid $header2-bg;
+            padding-top: 2rem;
 
             article {
                 background-color: $main-bg2;
@@ -185,5 +172,44 @@ body {
             }
         }
 
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        main {
+            .search {
+                form {
+                    input {
+                        width: 15rem;
+                    }
+                    button {
+                        width: 70%;
+                    }
+                }
+            }
+
+            .bookList {
+                grid-template-columns: 1fr;
+
+                article {
+                    max-width: 15rem;
+
+                    img {
+                        height: 15rem;
+                    }
+
+                    .noimage {
+                        height: 15rem;
+                    }
+
+                    ul {
+                        a {
+                            width: 90%;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
