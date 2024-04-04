@@ -50,7 +50,7 @@ body {
                 text-align: center;
             }
 
-        .search {
+        .bookSearch {
             margin-bottom: 2rem;
 
             form{
@@ -96,7 +96,7 @@ body {
             }
         }
 
-        .bookList {
+        .bookCards {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 2rem;
@@ -175,13 +175,14 @@ body {
     }
 }
 
+// Responsiv design - under 500px skal disse reglene gjelde:
 @media (max-width: 500px) {
     body {
         main {
-            .search {
+            .bookSearch {
                 form {
                     input {
-                        width: 15rem;
+                        width: 80%;
                     }
                     button {
                         width: 70%;
@@ -189,18 +190,20 @@ body {
                 }
             }
 
-            .bookList {
+            .bookCards {
                 grid-template-columns: 1fr;
 
                 article {
-                    max-width: 15rem;
+                    max-width: 90%;
 
                     img {
-                        height: 15rem;
+                        height: auto;
+                        max-width: 100%
                     }
 
                     .noimage {
-                        height: 15rem;
+                        height: auto;
+                        max-width: 100%
                     }
 
                     ul {

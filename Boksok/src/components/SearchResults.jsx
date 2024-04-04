@@ -1,6 +1,9 @@
-import { useState } from "react"
 
-export default function bookSearch({books, setQuery}) {
+//"searchresults", som lister opp søkeresultater i "bookcards"
+import { useState } from "react"
+import BookCards from "./BookCards"
+
+export default function SearchResults({books, setQuery}) {
 
     // useState: variabel som holder på søkeordene hentet fra inputfeltet, som endres når brukeren skriver. 
     const [search, setSearch] = useState("")
@@ -20,34 +23,19 @@ export default function bookSearch({books, setQuery}) {
     const handleChange = (event)=>{
         setSearch(event.target.value)
     }
-
-    console.log("bøker", books)
     
     return(
     <>
-    <section className='search'>
+    <section className='bookSearch'>
         <form onSubmit={handleSubmit}>
             <label htmlFor="search">Search:</label>
-            <input type="text" id="search" placeholder="Find your book here" onChange={handleChange}></input>
+            <input type="text" id="search" placeholder="search.." onChange={handleChange}></input>
             <button type='submit'>search</button>
         </form>
     </section>
-    <section className='bookList'>
-        {books?.map((item, index) => 
-        <article key={`${item.key}-${index}`}>
-             {item.cover_i ? (<img src={`https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg`} />) : (<p className="noimage">No image available</p>)}
-            <h3>{item.title}</h3>
-            <ul>
-                <li>Published: {item.first_publish_year}</li>
-                <li>Author: {item.author_name}</li>
-                <li>Rating: {item.average_rating || 'No rating available'}</li>
-                {item.isbn?.[0] && <a href={`https://www.amazon.com/s?k=${item.isbn[0]}`} target="_blank">Buy me at Amazon</a>} 
-            </ul>
-        </article>
-        )}
-    </section>
+    <BookCards books={books} />
     </>)
-}
+} 
 
 /* AMAZON LINK: I API finnes det ingen amazon_id/id_amazon, og de som har det har tomme verdier. 
 For å få denne til å  fungere har jeg referert til første index i isbn-arrayet (Forhåpentligvis har alle et isbn-nr på første index),

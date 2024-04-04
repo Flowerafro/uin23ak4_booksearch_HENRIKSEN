@@ -1,13 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 
-import BookSearch from './components/Booksearch';
+import SearchResults from './components/SearchResults';
 import Layout from './components/Layout';
 
 import '../src/style/main.scss'
 
 function App() {
-
   // variabel til API og henting av data
   const [books, setBooks] = useState([])
 
@@ -18,7 +17,7 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   // henter data fra API
-  // 
+  // Hadde en del problemer med å hente inn API fra OpenLibary i påsken, så jeg la inn en if-statement på ikke-ok respons og en feilmelding :)
   const getBooks = async () => {
     setLoading(true);
     try {
@@ -36,7 +35,6 @@ function App() {
     setLoading(false);
 }
       
-
   // kjører getBooks (henter data fra API) og [query]
   useEffect(()=>{
     getBooks()
@@ -50,7 +48,7 @@ function App() {
     <Layout>
       {loading ? <p> Getting data from OpenLibary. Please wait...</p> : (
         <Routes>
-        <Route path='/' element={<BookSearch books={books} query={query} setQuery={setQuery}/>} />
+        <Route path='/' element={<SearchResults books={books} query={query} setQuery={setQuery}/>} />
       </Routes>)}
     </Layout>
     </>
