@@ -38,9 +38,6 @@ function App() {
     getBooks()
   },[query])
 
-  console.log("bøker", books)
-  console.log("Q", query)
-
   return (
     <>
     <Layout>
