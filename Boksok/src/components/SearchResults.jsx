@@ -28,8 +28,8 @@ export default function SearchResults({books, setQuery}) {
     <>
     <section className='bookSearch'>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="search">Search:</label>
-            <input type="text" id="search" placeholder="search.." onChange={handleChange}></input>
+            <label htmlFor="search"></label>
+            <input type="text" id="search" placeholder="  search.." onChange={handleChange}></input>
             <button type='submit'>search</button>
         </form>
     </section>
@@ -40,3 +40,5 @@ export default function SearchResults({books, setQuery}) {
 /* AMAZON LINK: I API finnes det ingen amazon_id/id_amazon, og de som har det har tomme verdier. 
 For å få denne til å  fungere har jeg referert til første index i isbn-arrayet (Forhåpentligvis har alle et isbn-nr på første index),
 og lagt inn en betingelse om at om både isbn og index 0 finnes så skal <a href osv> printes*/
+
+/* Bilde fra pixabay: Image by <a href="https://pixabay.com/users/luboshouska-198496/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1204029">Lubos Houska</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1204029">Pixabay</a> */
