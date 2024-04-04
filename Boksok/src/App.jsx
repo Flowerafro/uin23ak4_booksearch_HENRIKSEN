@@ -1,9 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
-
 import SearchResults from './components/SearchResults';
 import Layout from './components/Layout';
-
 import '../src/style/main.scss'
 
 function App() {

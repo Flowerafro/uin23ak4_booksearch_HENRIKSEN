@@ -21,11 +21,21 @@ $font-ws: 200;
 $font-wm: 400;
 $font-wl: 700;
 
-* {
+*, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+#root {
+    margin: auto 0;
+}
+/* #root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  } */
 
 body {
     margin: 0;
@@ -43,6 +53,8 @@ body {
         height: auto;
         width: 100%;
         padding: 5rem;
+
+        text-align: center;
     
         // Legger bildet inn i en pseudo-element for å unnlate at opacity påvirker tekst
         &::before {
@@ -89,15 +101,15 @@ body {
             text-align: center;
             }
 
+            // Søkefeltet
         .bookSearch {
             
             form{    
-                width: 50rem;
-                height: 10rem;
 
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                padding: 5rem 0;
                 
 
                 input[type=text] {
@@ -135,6 +147,7 @@ body {
             }
         }
 
+        // listevisning av alle bøker
         .bookCards {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -213,18 +226,49 @@ body {
 
     }
 }
+// mediaQuery: Responsiv design - under 800px skal disse reglene gjelde:
+@media (max-width: 800px){
+    body {
+   
+        main {
+            
+            .bookCards {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                padding: 2rem;
+            }
+        }
+    }
+}
 
-// Responsiv design - under 500px skal disse reglene gjelde:
+// mediaQuery: Responsiv design - under 500px skal disse reglene gjelde:
+
 @media (max-width: 500px) {
     body {
         main {
             .bookSearch {
                 form {
-                    input[type=text] {
-                        width: 80%;
+                    flex-direction: column;
+                    padding-top: 1rem;
+
+                     input[type=text] {
+                        height: 3rem;
+                        width: 20rem;
+                        font-size: 1rem;
+                        border-radius: 0.5rem;
                     }
-                    button {
-                        width: 70%;
+                    // ved fokus skal det ikke skje en transition men lar den bare stå med samme regler som over 700px
+                    input[type=text]:focus {
+                        width: 20rem;
+                        border: $button 2px solid;
+                    }
+    
+                    button{
+                        border: none;
+                        font-size: 1rem;
+                        border-radius: 0.5rem;
+                        height: 3rem;
+                        margin-top: 1rem;
                     }
                 }
             }
@@ -233,7 +277,7 @@ body {
                 grid-template-columns: 1fr;
 
                 article {
-                    max-width: 90%;
+                    max-width: 95%;
 
                     img {
                         height: auto;
@@ -247,11 +291,12 @@ body {
 
                     ul {
                         a {
-                            width: 90%;
+                            width: 95%;
                         }
                     }
                 }
             }
+
         }
     }
 }
