@@ -99,7 +99,6 @@ body {
         .bookSearch {
             
             form{    
-
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -113,7 +112,7 @@ body {
                     border-radius: 1rem 0 0 1rem;
                     width: 10rem;
                     height: 2rem;
-                    padding-right: 2rem;
+                    padding: 1rem 2rem;
 
                     -webkit-transition: width 0.4s ease-in-out;
                     transition: width 0.4s ease-in-out;
@@ -126,17 +125,26 @@ body {
                 }
 
                 button{
-                    border: none;
+                    border: $button 2px solid;
                     border-radius: 0 1rem 1rem 0 ;
                     background-color: $button;
                     color: $font-cl;
                     width: 8rem;
                     height: 2rem;
+                    padding: 1rem 2rem;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center; 
+                    align-items: center; 
 
                     &:hover {
                         background-color: $button2;
                         cursor: pointer;
                     }
+                }
+
+                .button-clicked {
+                    background-color: blue;
                 }
             }
         }
@@ -155,6 +163,11 @@ body {
                 border-radius: 0.5rem 0.5rem 0 0;
                 box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
                 max-width: 20rem;
+                padding: 0.5rem;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: end; // får knappen i article til å ligge nederst i elementet
 
                 img {
                     max-width: 40rem;
@@ -198,21 +211,19 @@ body {
                         list-style: none;
                         margin: 0.5rem 0;
                     }
+                }
+                a {
+                    background-color: $button;
+                    color: $font-cl;
+                    margin: 1rem 0 1rem 0;
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    text-decoration: none;
+                    text-align: center;
 
-                    a {
-                        background-color: $button;
-                        color: $font-cl;
-                        margin-top: 1rem;
-                        padding: 1rem;
-                        border-radius: 0.5rem;
-                        text-decoration: none;
-                        text-align: center;
-                        width: 70%;
-
-                        &:hover {
-                            background-color: $button2;
-                            cursor: pointer;
-                        }
+                    &:hover {
+                        background-color: $button2;
+                        cursor: pointer;
                     }
                 }
             }
