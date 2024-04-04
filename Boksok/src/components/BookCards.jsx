@@ -1,5 +1,5 @@
 // bookCards lister opp søkeresultater 
-import BookCard from "./BookCard";
+import BookCard from "./Bookcard.jsx";
 
 export default function BookCards({books}) {
     return (
